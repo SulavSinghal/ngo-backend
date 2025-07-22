@@ -12,7 +12,7 @@ connectDB();
 const app = express();
 
 // CORS Configuration
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001']; // For client and admin-client
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174']; // For client and admin-client
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.includes(origin) || !origin) {
