@@ -10,7 +10,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
+app.use('/uploads', express.static('uploads'));
 // CORS Configuration
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174']; // For client and admin-client
 const corsOptions = {
@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-
+app.use('/api/testimonials', require('./routes/testimonial'));
 // A simple test route
 app.get('/', (req, res) => {
   res.send('API is running...');
