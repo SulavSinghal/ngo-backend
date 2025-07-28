@@ -2,7 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-
 // Load environment variables
 dotenv.config();
 
@@ -28,6 +27,7 @@ app.use(cors(corsOptions));
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use('/api/testimonials', require('./routes/testimonial'));
+app.use('/api/about-us', require('./routes/AboutUs'));
 // A simple test route
 app.get('/', (req, res) => {
   res.send('API is running...');
