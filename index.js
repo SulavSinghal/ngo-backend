@@ -4,8 +4,9 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const slidesRouter = require('./routes/slides');
 const activity = require('./routes/Activity');
-const path = require('path'
-);
+const volunteerStoriesRoutes = require('./routes/VolunteerStory');
+
+const path = require('path');
 // Load environment variables
 dotenv.config();
 
@@ -39,6 +40,10 @@ app.use('/api/testimonials', require('./routes/testimonial'));
 app.use('/api/about-us', require('./routes/AboutUs'));
 app.use('/api/slides', slidesRouter);
 app.use('/api/activities',activity);
+app.use('/api/volunteer-stories', volunteerStoriesRoutes);
+app.use('/api/volunteer-applications', require('./routes/VolunteerApplication'));
+app.use('/api/volunteer-opportunities', require('./routes/VolunteerOppurtunities'));
+
 // A simple test route
 
 const PORT = process.env.PORT || 5000;
