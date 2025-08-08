@@ -9,7 +9,7 @@ const volunteerApplication = require('./routes/VolunteerApplication');
 const VolunteerOppurtunities = require('./routes/VolunteerOppurtunities');
 const teamMembersRoutes = require('./routes/TeamMember');
 const InchargeMember = require("./routes/InchargeMember");
-
+const authRoutes = require('./routes/Auth');
 const path = require('path');
 // Load environment variables
 dotenv.config();
@@ -49,6 +49,7 @@ app.use('/api/volunteer-applications',volunteerApplication);
 app.use('/api/volunteer-opportunities',VolunteerOppurtunities);
 app.use('/api/teamMembers',teamMembersRoutes);
 app.use('/api/InchargeMember',InchargeMember);
+app.use('/api/', authRoutes);
 
 // A simple test route
 
