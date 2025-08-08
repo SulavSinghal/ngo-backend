@@ -5,6 +5,10 @@ const connectDB = require('./config/db');
 const slidesRouter = require('./routes/slides');
 const activity = require('./routes/Activity');
 const volunteerStoriesRoutes = require('./routes/VolunteerStory');
+const volunteerApplication = require('./routes/VolunteerApplication');
+const VolunteerOppurtunities = require('./routes/VolunteerOppurtunities');
+const teamMembersRoutes = require('./routes/TeamMember');
+const InchargeMember = require("./routes/InchargeMember");
 
 const path = require('path');
 // Load environment variables
@@ -41,8 +45,10 @@ app.use('/api/about-us', require('./routes/AboutUs'));
 app.use('/api/slides', slidesRouter);
 app.use('/api/activities',activity);
 app.use('/api/volunteer-stories', volunteerStoriesRoutes);
-app.use('/api/volunteer-applications', require('./routes/VolunteerApplication'));
-app.use('/api/volunteer-opportunities', require('./routes/VolunteerOppurtunities'));
+app.use('/api/volunteer-applications',volunteerApplication);
+app.use('/api/volunteer-opportunities',VolunteerOppurtunities);
+app.use('/api/teamMembers',teamMembersRoutes);
+app.use('/api/InchargeMember',InchargeMember);
 
 // A simple test route
 
