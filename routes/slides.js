@@ -1,7 +1,7 @@
 const express = require('express');
 const Slide = require('../models/Slides');
 const router = express.Router();
-
+const auth  = require('../middlewares/auth');
 // GET all slides (optionally filter by active)
 router.get('/', async (req, res) => {
   try {
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE a new slide
-router.post('/', async (req, res) => {
+router.post('/',auth, async (req, res) => {
   try {
     const slide = new Slide(req.body);
     await slide.save();
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE an existing slide by ID
-router.put('/:id', async (req, res) => {
+router.put('/:id',auth, async (req, res) => {
   try {
     const slide = await Slide.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!slide) return res.status(404).json({ error: 'Slide not found' });
@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE a slide by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',auth, async (req, res) => {
   try {
     const slide = await Slide.findByIdAndDelete(req.params.id);
     if (!slide) return res.status(404).json({ error: 'Slide not found' });
