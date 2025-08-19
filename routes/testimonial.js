@@ -6,7 +6,7 @@ const {
   createTestimonial,
   updateTestimonial,
   deleteTestimonial,
-} = require('../controllers/testimonial');
+} = require('../controllers/testimonial1');
 
 // Public route
 router.get('/', getTestimonials);
