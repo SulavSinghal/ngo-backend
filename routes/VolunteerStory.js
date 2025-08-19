@@ -1,5 +1,5 @@
 const express = require('express');
-const VolunteerStory = require('../models/VolunteerStory');
+const VolunteerStory = require('../models/VolunteerStoryModel');
 const upload = require('../middlewares/upload'); // your multer setup, as above
 
 const router = express.Router();
