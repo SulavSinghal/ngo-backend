@@ -30,10 +30,24 @@ router.post('/login', async (req, res) => {
 
     // Sign JWT with a properly set JWT_SECRET from .env
     const token = jwt.sign({ id: admin._id.toString() }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '1d' });
-    res.status(200).json({ message:"Login Successfully!!"});
+    res.status(200).json({
+      token,
+      user: { id: admin._id.toString(), email: admin.email }
+    });
   } catch (error) {
     console.error('JWT Sign Error:', error);
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Optional verify endpoint for the admin panel
+router.get('/verify-admin', authMiddleware, async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.admin.id).select('email _id');
+    if (!admin) return res.status(401).json({ valid: false });
+    return res.json({ valid: true, user: { id: admin._id.toString(), email: admin.email } });
+  } catch (error) {
+    return res.status(500).json({ valid: false });
   }
 });
 
