@@ -12,6 +12,7 @@ const InchargeMember = require("./routes/InchargeMember");
 const authRoutes = require('./routes/Auth');
 const Blog = require('./routes/Blog');
 const path = require('path');
+
 // Load environment variables
 dotenv.config();
 
@@ -52,6 +53,8 @@ app.use('/api/volunteer-opportunities',VolunteerOppurtunities);
 app.use('/api/teamMembers',teamMembersRoutes);
 app.use('/api/InchargeMember',InchargeMember);
 app.use('/api/', authRoutes);
+app.use('/api/messages', require('./routes/MessageRoute'));
+app.use('/api/contact-info', require('./routes/ContactInfoRoute'));
 
 // A simple test route
 
