@@ -1,26 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog');
+const Activity = require('../models/Blog');
 const upload = require('../middlewares/upload'); // Multer middleware
 const multer = require('multer');
 // Create activity - accepts multipart/form-data with optional image
 router.post('/', upload, async (req, res) => {
   try {
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : req.body.imageUrl;
-    const BlogData = {
+    const activityData = {
       ...req.body,
       imageUrl,
       date: req.body.date ? new Date(req.body.date) : undefined,
     };
-    const blog = new Blog(BlogData);
-    await blog.save();
-    res.status(201).json(blog);
+    const activity = new Activity(activityData);
+    await activity.save();
+    res.status(201).json(activity);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-// Get all blog, optional filter by category
+// Get all activities, optional filter by category
 router.get('/', async (req, res) => {
   try {
     const filter = {};
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     const activities = await Activity.find(filter).sort({ date: -1 });
     res.json(activities);
   } catch (err) {
-    res.status(500).json("Blog not found");
+    res.status(500).json({ error: err.message });
   }
 });
 
