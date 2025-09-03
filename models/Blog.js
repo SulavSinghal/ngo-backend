@@ -5,7 +5,7 @@ const activitySchema = new mongoose.Schema({
   description: { type: String, required: true },
   category: { type: String, required: true }, // e.g., Education, Social Welfare
   date: { type: Date, required: true },
-//   location: { type: String, required: true },
+  location: { type: String, required: true },
   imageUrl: { type: String },
   details: { type: String },
   createdAt: { type: Date, default: Date.now },
